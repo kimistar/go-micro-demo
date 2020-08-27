@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package greeter;
+
+import "validate/validate.proto";
+
+option go_package = "proto/greeter";
+
+message HelloRequest {
+  string name = 1 [(validate.rules).string.min_len = 1];
+}
+
+message HelloResponse {
+  string msg = 1;
+}
+
+message HiRequest {
+  string name = 1 [(validate.rules).string.min_len = 1];
+}
+
+message HiResponse {
+  string reply = 1;
+}
+
+service Hello {
+  rpc Hello(HelloRequest) returns(HelloResponse){}
+  rpc Hi(HiRequest) returns (HiResponse){}
+}
+
